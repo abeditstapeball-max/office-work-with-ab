@@ -1886,7 +1886,7 @@
                 <button type="button" class="ab-rbtn" id="abPptHideBtn2" onclick="abPptToggleHide()"><i class="fa-solid fa-eye-slash"></i>Hide Slide</button>
                 <button type="button" class="ab-rbtn" onclick="abPptRehearse()"><i class="fa-solid fa-stopwatch"></i>Rehearse Timings</button>
               </div><div class="ab-rglabel">Set Up</div></div>
-              <div class="ab-rgroup"><div class="ab-rgrow"><span class="ab-rnote" id="abPptShowInfo">Present mode me: right side tap = agli slide/animation, left side tap = peeche. Keyboard: → aage, ← peeche, Esc band.</span></div><div class="ab-rglabel">How it plays</div></div>
+              <div class="ab-rgroup"><div class="ab-rgrow"><span class="ab-rnote" id="abPptShowInfo">In Present mode: tap the right side = next slide/animation, tap the left side = previous. Keyboard: → next, ← previous, Esc to exit.</span></div><div class="ab-rglabel">How it plays</div></div>
             </div>
             <div class="ab-rpanel" id="abPptPanelReview">
               <div class="ab-rgroup"><div class="ab-rgrow">
@@ -2367,7 +2367,7 @@
               <div class="space-y-1.5">
                 <label class="flex items-center gap-2 text-xs font-semibold text-slate-700 cursor-pointer"><input type="checkbox" id="cvwShowReferences" class="accent-amber-600" onchange="cvwExtraToggle('references', this.checked)"> References</label>
                 <textarea id="cvwReferencesText" rows="2" placeholder="Name, designation, phone — one reference per line..." class="w-full text-xs bg-slate-50 border border-slate-300 rounded-lg p-2 outline-none" oninput="cvwExtraText('references', this.value)"></textarea>
-                <label class="flex items-center gap-2 text-[11px] font-medium text-slate-600 cursor-pointer"><input type="checkbox" id="cvwRefOnRequest" class="accent-amber-600" onchange="cvwRefOnRequest(this.checked)"> Sirf "References available on request" likhein</label>
+                <label class="flex items-center gap-2 text-[11px] font-medium text-slate-600 cursor-pointer"><input type="checkbox" id="cvwRefOnRequest" class="accent-amber-600" onchange="cvwRefOnRequest(this.checked)"> Only write "References available on request"</label>
               </div>
             </div>
           </div>
@@ -2376,7 +2376,7 @@
           <div class="lg:col-span-7">
             <div class="flex items-center justify-between mb-2">
               <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider"><i class="fa-solid fa-eye mr-1"></i> Live A4 Preview</p>
-              <p class="text-[11px] text-slate-400">Har tabdeeli foran preview me nazar aati hai</p>
+              <p class="text-[11px] text-slate-400">Every change appears instantly in the preview</p>
             </div>
             <div id="cvPrintContainer" class="bg-white border border-slate-300 rounded-2xl shadow-md overflow-hidden text-slate-800" style="aspect-ratio: 210 / 297;">
               <!-- Rendered via cvwRender() -->
@@ -2583,7 +2583,7 @@
             <label for="zometaPhotoInput" class="cursor-pointer shrink-0 w-10 h-10 rounded-xl bg-violet-50 hover:bg-violet-100 border border-violet-200 text-violet-700 flex items-center justify-center" title="Send a Photo">
               <i class="fa-solid fa-image"></i>
             </label>
-            <textarea id="zometaInput" rows="1" placeholder="Zometa se kuch bhi poochhein... (Enter = Send)" class="flex-1 resize-none text-sm bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 outline-none focus:border-violet-400" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendZometaMessage();}"></textarea>
+            <textarea id="zometaInput" rows="1" placeholder="Ask Zometa anything... (Enter = Send)" class="flex-1 resize-none text-sm bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 outline-none focus:border-violet-400" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendZometaMessage();}"></textarea>
             <button onclick="sendZometaMessage()" class="shrink-0 h-10 px-4 rounded-xl bg-violet-600 hover:bg-violet-700 text-white text-sm font-bold shadow flex items-center gap-1.5">
               <i class="fa-solid fa-paper-plane"></i> Send
             </button>
@@ -26500,7 +26500,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
     }
     function ab2FormatPainter() {
       const btn = document.getElementById('ab2PainterBtn');
-      if (ab2Painter) { ab2Painter = null; btn && btn.classList.remove('on'); abXlSetStatus('Format Painter band.'); return; }
+      if (ab2Painter) { ab2Painter = null; btn && btn.classList.remove('on'); abXlSetStatus('Format Painter off.'); return; }
       const s = ab2Sel(); ab2Painter = { r: s.r1, c: s.c1, cell: ab2CloneCell(ab2Cell(s.r1, s.c1)) };
       btn && btn.classList.add('on');
       abXlSetStatus('Format Painter ON — whichever cell/range you click now will get the same format.');
@@ -26820,7 +26820,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         ab2Field('Range', ab2TextInput('ab2SortRange', ab2RangeA1(ab2Sel().r2 > ab2Sel().r1 || ab2Sel().c2 > ab2Sel().c1 ? ab2Sel() : u))) +
         ab2Field('Sort by', ab2SelInput('ab2SortCol', colOpts, String(u.c1))) +
         ab2Field('Order', ab2SelInput('ab2SortDir', [['1', 'A → Z (ascending)'], ['-1', 'Z → A (descending)']], '1')) +
-        '<label class="ab-xl-check"><input type="checkbox" id="ab2SortHeader" checked> Pehli row header hai</label>',
+        '<label class="ab-xl-check"><input type="checkbox" id="ab2SortHeader" checked> First row is the header</label>',
         [{ label: 'Cancel' }, { label: 'Sort', primary: true, fn: () => {
           if (!ab2GuardEdit()) return;
           const rg = ab2ParseRange(ab2MVal('ab2SortRange')); if (!rg) { abXlSetStatus('The range is incorrect.'); return; }
@@ -26836,8 +26836,8 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         ab2Field('Column', ab2SelInput('ab2FilterCol', colOpts, String(u.c1))) +
         ab2Field('Condition', ab2SelInput('ab2FilterOp', [['contains', 'Contains (text)'], ['equals', 'Equals'], ['gt', 'Greater than (number)'], ['lt', 'Less than (number)']], 'contains')) +
         ab2Field('Value', ab2TextInput('ab2FilterVal', '')),
-        [{ label: 'Cancel' }, { label: 'Saari rows dikhayen (Clear)', fn: () => ab2FilterClear() },
-         { label: 'Filter lagayen', primary: true, fn: () => ab2ApplyFilter(+ab2MVal('ab2FilterCol'), ab2MVal('ab2FilterOp'), ab2MVal('ab2FilterVal')) }]);
+        [{ label: 'Cancel' }, { label: 'Show All Rows (Clear)', fn: () => ab2FilterClear() },
+         { label: 'Apply Filter', primary: true, fn: () => ab2ApplyFilter(+ab2MVal('ab2FilterCol'), ab2MVal('ab2FilterOp'), ab2MVal('ab2FilterVal')) }]);
     }
     function ab2ApplyFilter(col, op, val) {
       if (!ab2GuardEdit()) return;
@@ -26854,7 +26854,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         if (!show) { f.config.rowhidden[r] = 0; hidden.push(r); }
       }
       ab2Settings().filterHidden = hidden; ab2SaveSettings();
-      ab2Refresh(); abXlSetStatus('Filter lag gaya — ' + hidden.length + ' rows chhupa di gayi.');
+      ab2Refresh(); abXlSetStatus('Filter applied — ' + hidden.length + ' rows hidden.');
     }
     function ab2FilterClear(silent) {
       const f = ab2Sheet(); if (f && f.config && f.config.rowhidden) {
@@ -27008,7 +27008,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         const src = ab2CanvasPng(Math.round(img.width * sc), Math.round(img.height * sc), ctx => ctx.drawImage(img, 0, 0, img.width * sc, img.height * sc));
         URL.revokeObjectURL(img.src);
         ab2Settings().bg = src; ab2SaveSettings(); ab2ApplyBackground();
-        abXlSetStatus('Sheet background lag gaya (sirf screen par nazar aata hai).');
+        abXlSetStatus('Sheet background applied (visible on screen only).');
       };
       img.src = URL.createObjectURL(file);
     }
@@ -27091,7 +27091,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         '<p>The chart will be built from the <b>current selection</b>: the first column is labels, the remaining columns are data series. Current selection: <b>' + ab2RangeA1(s) + '</b></p>' +
         ab2Field('Chart type', ab2SelInput('ab2ChartType', [['column', 'Column'], ['bar', 'Bar'], ['line', 'Line'], ['pie', 'Pie']], type)) +
         '<label class="ab-xl-check"><input type="checkbox" id="ab2ChartHeader" checked> First row contains series names</label>',
-        [{ label: 'Cancel' }, { label: 'Chart banayen', primary: true, fn: () => ab2MakeChart(ab2MVal('ab2ChartType'), document.getElementById('ab2ChartHeader').checked) }]);
+        [{ label: 'Cancel' }, { label: 'Create Chart', primary: true, fn: () => ab2MakeChart(ab2MVal('ab2ChartType'), document.getElementById('ab2ChartHeader').checked) }]);
     }
     function ab2SelectionTable(hasHeader) {
       const s = ab2Sel(); const labels = [], series = [];
@@ -27168,9 +27168,9 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         ab2Field('Web address (URL)', ab2TextInput('ab2LinkUrl', cur, 'https://example.com')) +
         (cur ? '<p>This cell already has a link: <b>' + abEsc(cur) + '</b></p>' : ''),
         [{ label: 'Cancel' },
-         cur ? { label: 'Link kholen', fn: () => window.open(cur, '_blank') } : null,
-         cur ? { label: 'Link hatayen', fn: () => { if (!ab2GuardEdit()) return; const d = ab2Data(); if (d[s.r1] && d[s.r1][s.c1]) { delete d[s.r1][s.c1].hl; ab2Fmt(s.r1, s.c1, 'fc', '#000000'); ab2Fmt(s.r1, s.c1, 'un', 0); } ab2Refresh(); } } : null,
-         { label: 'Link lagayen', primary: true, fn: () => {
+         cur ? { label: 'Open Link', fn: () => window.open(cur, '_blank') } : null,
+         cur ? { label: 'Remove Link', fn: () => { if (!ab2GuardEdit()) return; const d = ab2Data(); if (d[s.r1] && d[s.r1][s.c1]) { delete d[s.r1][s.c1].hl; ab2Fmt(s.r1, s.c1, 'fc', '#000000'); ab2Fmt(s.r1, s.c1, 'un', 0); } ab2Refresh(); } } : null,
+         { label: 'Add Link', primary: true, fn: () => {
             if (!ab2GuardEdit()) return;
             let url = ab2MVal('ab2LinkUrl').trim(); if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
             const txt = ab2MVal('ab2LinkText');
@@ -27178,7 +27178,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
             const d = ab2Data(); if (!d[s.r1]) d[s.r1] = []; if (!d[s.r1][s.c1]) d[s.r1][s.c1] = { v: txt || '', m: txt || '', ct: { fa: 'General', t: 's' } };
             d[s.r1][s.c1].hl = url;
             ab2Fmt(s.r1, s.c1, 'fc', '#0563c1'); ab2Fmt(s.r1, s.c1, 'un', 1);
-            ab2Refresh(); abXlSetStatus('Link lag gaya: ' + url);
+            ab2Refresh(); abXlSetStatus('Link applied: ' + url);
           } }].filter(Boolean));
     }
     function ab2CommentDialog() {
@@ -27187,7 +27187,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
       ab2Modal('Comment — ' + ab2A1(s.r1, s.c1),
         ab2Field('Comment text', '<textarea id="ab2CommentText" rows="3">' + abEsc(cur) + '</textarea>'),
         [{ label: 'Cancel' },
-         cur ? { label: 'Comment hatayen', fn: () => { if (!ab2GuardEdit()) return; const d = ab2Data(); if (d[s.r1] && d[s.r1][s.c1]) delete d[s.r1][s.c1].ps; ab2Refresh(); abXlSetStatus('Comment hata diya.'); } } : null,
+         cur ? { label: 'Remove Comment', fn: () => { if (!ab2GuardEdit()) return; const d = ab2Data(); if (d[s.r1] && d[s.r1][s.c1]) delete d[s.r1][s.c1].ps; ab2Refresh(); abXlSetStatus('Comment hata diya.'); } } : null,
          { label: 'Save', primary: true, fn: () => {
             if (!ab2GuardEdit()) return;
             const d = ab2Data(); if (!d[s.r1]) d[s.r1] = []; if (!d[s.r1][s.c1]) d[s.r1][s.c1] = { v: '', m: '', ct: { fa: 'General', t: 's' } };
@@ -27238,7 +27238,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         ab2Field('Row field (group kis par?)', ab2SelInput('ab2PivRow', headers, String(u.c1))) +
         ab2Field('Values field', ab2SelInput('ab2PivVal', headers, String(Math.min(u.c2, u.c1 + 1)))) +
         ab2Field('Aggregation', ab2SelInput('ab2PivAgg', [['sum', 'Sum'], ['count', 'Count'], ['average', 'Average'], ['max', 'Max'], ['min', 'Min']], 'sum')),
-        [{ label: 'Cancel' }, { label: 'Pivot banayen', primary: true, fn: () => ab2MakePivot(ab2ParseRange(ab2MVal('ab2PivRange')), +ab2MVal('ab2PivRow'), +ab2MVal('ab2PivVal'), ab2MVal('ab2PivAgg')) }]);
+        [{ label: 'Cancel' }, { label: 'Create Pivot', primary: true, fn: () => ab2MakePivot(ab2ParseRange(ab2MVal('ab2PivRange')), +ab2MVal('ab2PivRow'), +ab2MVal('ab2PivVal'), ab2MVal('ab2PivAgg')) }]);
     }
     function ab2MakePivot(rg, rowCol, valCol, agg) {
       if (!rg || !ab2GuardEdit()) { abXlSetStatus('The range is incorrect.'); return; }
@@ -27330,7 +27330,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
       ab2Modal('Header & Footer',
         ab2Field('Header (har page ke upar)', ab2TextInput('ab2HfHeader', p.header)) +
         ab2Field('Footer (at the bottom of every page)', ab2TextInput('ab2HfFooter', p.footer)) +
-        '<label class="ab-xl-check"><input type="checkbox" id="ab2HfPageNum" ' + (p.pageNum ? 'checked' : '') + '> Page numbers dikhayen (Page X of Y)</label>',
+        '<label class="ab-xl-check"><input type="checkbox" id="ab2HfPageNum" ' + (p.pageNum ? 'checked' : '') + '> Show page numbers (Page X of Y)</label>',
         [{ label: 'Cancel' }, { label: 'Save', primary: true, fn: () => {
           const pg = ab2Settings().page; pg.header = ab2MVal('ab2HfHeader'); pg.footer = ab2MVal('ab2HfFooter'); pg.pageNum = document.getElementById('ab2HfPageNum').checked;
           ab2SaveSettings(); abXlSetStatus('Header/Footer saved — it will appear in Print/Preview.');
@@ -27434,7 +27434,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
       ab2Refresh();
       const fx = document.getElementById('abXlFxInput');
       if (fx && ab2LsFormulaBar === false) { setTimeout(() => { ab2SyncFontBtns(); fx.focus(); fx.setSelectionRange(fx.value.length - 1, fx.value.length - 1); }, 120); }
-      abXlSetStatus(name + ' formula ' + ab2A1(s.r1, s.c1) + ' me lag gaya — formula bar me range theek karke Enter dabayen.');
+      abXlSetStatus(name + ' formula applied in ' + ab2A1(s.r1, s.c1) + ' — correct the range in the formula bar and press Enter.');
       setTimeout(abXlUpdateSelInfo, 400);
     }
     function ab2FxDialog() {
@@ -27602,8 +27602,8 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
       ab2Modal('Remove Duplicates',
         '<p>Range: <b>' + ab2RangeA1(rg) + '</b>. Rows that are duplicates in the chosen column will be deleted (the first entry will be kept).</p>' +
         ab2Field('Key column', ab2SelInput('ab2DupCol', colOpts, String(rg.c1))) +
-        '<label class="ab-xl-check"><input type="checkbox" id="ab2DupHeader" checked> Pehli row header hai</label>',
-        [{ label: 'Cancel' }, { label: 'Duplicates hatayen', primary: true, fn: () => {
+        '<label class="ab-xl-check"><input type="checkbox" id="ab2DupHeader" checked> First row is the header</label>',
+        [{ label: 'Cancel' }, { label: 'Remove Duplicates', primary: true, fn: () => {
           if (!ab2GuardEdit()) return;
           const col = +ab2MVal('ab2DupCol'); const header = document.getElementById('ab2DupHeader').checked;
           const d = ab2Data(); const seen = new Set(); let removed = 0;
@@ -27622,16 +27622,16 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         ab2Field('List values (separated by commas) — for List only', ab2TextInput('ab2DvList', 'Yes,No')) +
         ab2Field('Minimum (Whole number)', ab2NumInput('ab2DvMin', 0)) +
         ab2Field('Maximum (Whole number)', ab2NumInput('ab2DvMax', 100)),
-        [{ label: 'Cancel' }, { label: 'Validation lagayen', primary: true, fn: () => {
+        [{ label: 'Cancel' }, { label: 'Apply Validation', primary: true, fn: () => {
           if (!ab2GuardEdit()) return;
           const f = ab2Sheet(); if (!f.dataVerification) f.dataVerification = {};
           const type = ab2MVal('ab2DvType');
           ab2EachSel((r, c) => {
             f.dataVerification[r + '_' + c] = type === 'dropdown'
               ? { type: 'dropdown', type2: '', value1: ab2MVal('ab2DvList'), value2: '', validity: '', remote: false, prohibitInput: false, hintShow: false, hintText: '' }
-              : { type: 'number', type2: 'bt', value1: ab2MVal('ab2DvMin'), value2: ab2MVal('ab2DvMax'), validity: '', remote: false, prohibitInput: true, hintShow: true, hintText: 'Sirf ' + ab2MVal('ab2DvMin') + ' se ' + ab2MVal('ab2DvMax') + ' ke darmiyan number' };
+              : { type: 'number', type2: 'bt', value1: ab2MVal('ab2DvMin'), value2: ab2MVal('ab2DvMax'), validity: '', remote: false, prohibitInput: true, hintShow: true, hintText: 'Only a number between ' + ab2MVal('ab2DvMin') + ' and ' + ab2MVal('ab2DvMax') + ' is allowed' };
           });
-          ab2Refresh(); abXlSetStatus('Data validation lag gaya (' + (type === 'dropdown' ? 'dropdown list' : 'whole number') + ').');
+          ab2Refresh(); abXlSetStatus('Data validation applied (' + (type === 'dropdown' ? 'dropdown list' : 'whole number') + ').');
         } }]);
     }
     function ab2ConsolidateDialog() {
@@ -27670,7 +27670,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
     }
     async function ab2GoalSeekRun(setC, target, byC) {
       if (!setC || !byC || isNaN(target)) { abXlSetStatus('Goal Seek: the cells are incorrect.'); return; }
-      ab2CloseModal(); abXlSetStatus('Goal Seek chal raha hai…');
+      ab2CloseModal(); abXlSetStatus('Goal Seek is running…');
       const wait = ms => new Promise(r => setTimeout(r, ms));
       const evalAt = async x => { try { luckysheet.setCellValue(byC.r, byC.c, x); } catch (e) {} await wait(160); const v = ab2Val(setC.r, setC.c); return typeof v === 'number' ? v : NaN; };
       let lo = 0, hi = 100;
@@ -27691,9 +27691,9 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
       const s = ab2Sel();
       if (s.c2 - s.c1 < 1 || s.r2 - s.r1 < 2) { abXlSetStatus('Select 2 columns for Forecast: the first is the period, the second is values (at least 3 rows).'); return; }
       ab2Modal('Forecast Sheet',
-        '<p>Selection: <b>' + ab2RangeA1(s) + '</b> — linear trend se aage ke periods ka andaza nayi sheet par bane ga.</p>' +
-        ab2Field('Kitne periods aage?', ab2NumInput('ab2FcN', 3)),
-        [{ label: 'Cancel' }, { label: 'Forecast banayen', primary: true, fn: () => ab2MakeForecast(s, Math.max(1, Math.min(12, +ab2MVal('ab2FcN') || 3))) }]);
+        '<p>Selection: <b>' + ab2RangeA1(s) + '</b> — a forecast for the coming periods will be created on a new sheet from the linear trend.</p>' +
+        ab2Field('How many periods ahead?', ab2NumInput('ab2FcN', 3)),
+        [{ label: 'Cancel' }, { label: 'Create Forecast', primary: true, fn: () => ab2MakeForecast(s, Math.max(1, Math.min(12, +ab2MVal('ab2FcN') || 3))) }]);
     }
     function ab2MakeForecast(s, nFuture) {
       const xs = [], ys = [];
@@ -27722,8 +27722,8 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
         '<p>The data should first be <b>sorted</b> by the group column. Each group will get its total below it, and a Grand Total will be inserted at the end.</p>' +
         ab2Field('Group column', ab2SelInput('ab2SubGroup', colOpts, String(rg.c1))) +
         ab2Field('Values column (jis ka total)', ab2SelInput('ab2SubVal', colOpts, String(Math.min(rg.c2, rg.c1 + 1)))) +
-        '<label class="ab-xl-check"><input type="checkbox" id="ab2SubHeader" checked> Pehli row header hai</label>',
-        [{ label: 'Cancel' }, { label: 'Subtotal lagayen', primary: true, fn: () => {
+        '<label class="ab-xl-check"><input type="checkbox" id="ab2SubHeader" checked> First row is the header</label>',
+        [{ label: 'Cancel' }, { label: 'Apply Subtotal', primary: true, fn: () => {
           if (!ab2GuardEdit()) return;
           const gc = +ab2MVal('ab2SubGroup'), vc = +ab2MVal('ab2SubVal'), header = document.getElementById('ab2SubHeader').checked;
           const d = ab2Data(); const start = header ? rg.r1 + 1 : rg.r1;
@@ -27742,7 +27742,7 @@ window.AB_WORDS10K = "the of and to a in for is on that by this with i you it no
           out.push(gRow);
           for (let i = 0; i < out.length; i++) d[rg.r1 + i] = out[i];
           const f = ab2Sheet(); f.row = Math.max(f.row || 0, rg.r1 + out.length);
-          ab2Refresh(); abXlSetStatus('Subtotal lag gaya — Grand Total: ' + Math.round(grand * 100) / 100);
+          ab2Refresh(); abXlSetStatus('Subtotal applied — Grand Total: ' + Math.round(grand * 100) / 100);
         } }]);
     }
     /* ---------- REVIEW tab ---------- */
@@ -29735,7 +29735,7 @@ function abBuildPptTemplate(t) {
     function abMenuClose() { var m = document.getElementById('abMenuPop'); if (m) m.remove(); }
     function abMenuFor(btn, items) { var r = btn.getBoundingClientRect(); return abMenu(r.left, r.bottom + 4, items); }
     /* ---------- Home extras ---------- */
-    function abWdPaste() { abWdPage().focus(); var done = false; try { done = document.execCommand('paste'); } catch (e) {} if (!done && navigator.clipboard && navigator.clipboard.readText) { navigator.clipboard.readText().then(function (t) { if (t) abWdInsertHtmlAtCaret(abEsc(t).replace(/\n/g, '<br>')); abSetStatus('abWdStatus', 'Pasted ✓'); }).catch(function () { abSetStatus('abWdStatus', 'Paste nahi hua — Ctrl+V dabayen'); }); } else if (done) { abSetStatus('abWdStatus', 'Pasted ✓'); abWdAfterEdit(); } }
+    function abWdPaste() { abWdPage().focus(); var done = false; try { done = document.execCommand('paste'); } catch (e) {} if (!done && navigator.clipboard && navigator.clipboard.readText) { navigator.clipboard.readText().then(function (t) { if (t) abWdInsertHtmlAtCaret(abEsc(t).replace(/\n/g, '<br>')); abSetStatus('abWdStatus', 'Pasted ✓'); }).catch(function () { abSetStatus('abWdStatus', 'Paste did not work — press Ctrl+V'); }); } else if (done) { abSetStatus('abWdStatus', 'Pasted ✓'); abWdAfterEdit(); } }
     function abWdSelectionHtml() { var sel = window.getSelection(); if (!sel || !sel.rangeCount || sel.isCollapsed) return ''; var d = document.createElement('div'); d.appendChild(sel.getRangeAt(0).cloneContents()); return d.innerHTML; }
     function abWdPainterToggle() {
       var btn = document.getElementById('abWdPainterBtn');
@@ -29761,7 +29761,7 @@ function abBuildPptTemplate(t) {
       if (f.font) document.execCommand('fontName', false, f.font);
       if (f.sizePt) abWdFontSize(String(f.sizePt));
       abWdPainter.on = false; var btn = document.getElementById('abWdPainterBtn'); if (btn) btn.classList.remove('on');
-      abSetStatus('abWdStatus', 'Format lag gaya ✓'); abWdAfterEdit();
+      abSetStatus('abWdStatus', 'Format applied ✓'); abWdAfterEdit();
     }
     function abWdFontStep(d) { var sel = document.getElementById('abWdFontSize'); if (!sel) return; var cur = parseInt(sel.value || '12', 10); var nv = Math.max(8, Math.min(72, cur + d)); sel.value = String(nv); if (!document.queryCommandSupported('fontSize')) {} abWdFontSize(sel.value); abSetStatus('abWdStatus', 'Font size: ' + nv + 'pt'); }
     function abWdCaseMenu(ev) { var b = ev.currentTarget; abMenuFor(b, [
@@ -29825,13 +29825,13 @@ function abBuildPptTemplate(t) {
     function abWdInsertCover(i) {
       var c = AB_WD_COVERS[i] || AB_WD_COVERS[0];
       var html = '<div class="ab-wd-cover" style="background:' + c.bg + ';color:' + c.fg + '"><h1 style="font-size:34pt;margin:0 0 10px;color:' + c.fg + '">Document Title</h1><p style="font-size:15pt">Type the sub-title here</p><p style="margin-top:60px;font-size:12.5pt">Author name<br>' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) + '</p></div><p></p>';
-      abWdPage().innerHTML = html + abWdPage().innerHTML; abWdAfterEdit(); abSetStatus('abWdStatus', 'Cover page lag gaya ✓ (title par click kar ke badlen)');
+      abWdPage().innerHTML = html + abWdPage().innerHTML; abWdAfterEdit(); abSetStatus('abWdStatus', 'Cover page inserted ✓ (click the title to edit it)');
     }
     function abWdBlankPage() { abWdInsertHtmlAtCaret('<div style="page-break-after:always;height:6px"></div><p></p>'); abSetStatus('abWdStatus', 'Blank page added ✓'); }
     function abWdScreenshot() { abSetStatus('abWdStatus', 'Choose a screenshot/photo — select a file from your device'); document.getElementById('abWdImg').click(); }
     var AB_WD_SHAPES = [ { n: 'Rectangle', d: 'M10 25 H118 V75 H10 Z' }, { n: 'Oval', d: 'M64 8 a56 42 0 1 0 .001 0 Z' }, { n: 'Triangle', d: 'M64 10 L120 90 H8 Z' }, { n: 'Arrow', d: 'M8 40 H74 V22 L122 50 L74 78 V60 H8 Z' }, { n: 'Star', d: 'M64 6 L79 42 L118 42 L86 66 L97 102 L64 80 L31 102 L42 66 L10 42 L49 42 Z' }, { n: 'Diamond', d: 'M64 6 L122 50 L64 94 L6 50 Z' } ];
     function abWdShapesMenu(ev) { var items = [{ head: 'Shapes' }]; AB_WD_SHAPES.forEach(function (s) { items.push({ label: s.n, fn: function () { abWdInsertShape(s); } }); }); abMenuFor(ev.currentTarget, items); }
-    function abWdInsertShape(s) { var url = abShapePng(s.d, '#2b579a'); if (url) { abWdPage().focus(); document.execCommand('insertImage', false, url); abWdAfterEdit(); abSetStatus('abWdStatus', s.n + ' shape lag gaya ✓'); } }
+    function abWdInsertShape(s) { var url = abShapePng(s.d, '#2b579a'); if (url) { abWdPage().focus(); document.execCommand('insertImage', false, url); abWdAfterEdit(); abSetStatus('abWdStatus', s.n + ' shape inserted ✓'); } }
     function abShapePng(pathD, fill) {
       try { var cv = document.createElement('canvas'); cv.width = 256; cv.height = 200; var cx = cv.getContext('2d'); var p = new Path2D(pathD); cx.save(); cx.scale(2, 2); cx.fillStyle = fill || '#2b579a'; cx.fill(p); cx.restore(); return cv.toDataURL('image/png'); } catch (e) { return null; }
     }
@@ -29860,7 +29860,7 @@ function abBuildPptTemplate(t) {
         var type = ab2MVal('abWdChType') || 'bar'; if (!labels.length) labels = ['A'];
         var cv = document.createElement('canvas'); cv.width = 640; cv.height = 360; document.body.appendChild(cv);
         var ch = new Chart(cv.getContext('2d'), { type: type, data: { labels: labels, datasets: [{ label: ab2MVal('abWdChTitle') || 'Chart', data: vals, backgroundColor: ['#2b579a', '#70ad47', '#ffc000', '#c55a11', '#7030a0', '#00b0f0'] }] }, options: { responsive: false, animation: false, plugins: { title: { display: true, text: ab2MVal('abWdChTitle') || '' } } } });
-        setTimeout(function () { var url = cv.toDataURL('image/png'); ch.destroy(); cv.remove(); abWdPage().focus(); document.execCommand('insertImage', false, url); abWdAfterEdit(); abSetStatus('abWdStatus', 'Chart lag gaya ✓'); }, 350);
+        setTimeout(function () { var url = cv.toDataURL('image/png'); ch.destroy(); cv.remove(); abWdPage().focus(); document.execCommand('insertImage', false, url); abWdAfterEdit(); abSetStatus('abWdStatus', 'Chart inserted ✓'); }, 350);
       } }]);
     }
     function abWdBookmarkDialog() {
@@ -29885,7 +29885,7 @@ function abBuildPptTemplate(t) {
       abSetStatus('abWdStatus', (which === 'header' ? 'Header' : 'Footer') + ' — edit it here; it goes on every page in print and in the .docx');
     }
     function abWdTogglePageNum() { abWdDesign.pageNum = !abWdDesign.pageNum; abWdApplyDesign(); abWdDesignSave(); var b = document.getElementById('abWdPageNumBtn'); if (b) b.classList.toggle('on', abWdDesign.pageNum); abSetStatus('abWdStatus', 'Page number ' + (abWdDesign.pageNum ? 'ON ✓' : 'OFF')); }
-    function abWdTextBox() { abWdInsertHtmlAtCaret('<div class="ab-wd-textbox">Text box — type here</div><p></p>'); abSetStatus('abWdStatus', 'Text box lag gaya ✓'); }
+    function abWdTextBox() { abWdInsertHtmlAtCaret('<div class="ab-wd-textbox">Text box — type here</div><p></p>'); abSetStatus('abWdStatus', 'Text box inserted ✓'); }
     function abWdWordArtMenu(ev) { var styles = [
       { label: 'Blue Bold', st: 'font-size:26pt;font-weight:800;color:#1d4ed8' }, { label: 'Red Outline', st: 'font-size:26pt;font-weight:800;color:#fff;-webkit-text-stroke:1.5px #dc2626' },
       { label: 'Green Shadow', st: 'font-size:26pt;font-weight:800;color:#15803d;text-shadow:3px 3px 0 #bbf7d0' }, { label: 'Purple Gradient', st: 'font-size:26pt;font-weight:800;background:linear-gradient(90deg,#7e22ce,#db2777);-webkit-background-clip:text;color:transparent' }
@@ -29915,7 +29915,7 @@ function abBuildPptTemplate(t) {
       { label: 'Apna text…', fn: function () { var t = prompt('Watermark text:'); if (t) abWdSetWatermark(t); } },
       { label: 'Remove Watermark', fn: function () { abWdSetWatermark(''); } }
     ]); }
-    function abWdSetWatermark(t) { abWdDesign.watermark = t; abWdApplyDesign(); abWdDesignSave(); abSetStatus('abWdStatus', t ? 'Watermark lag gaya ✓' : 'Watermark hat gaya ✓'); }
+    function abWdSetWatermark(t) { abWdDesign.watermark = t; abWdApplyDesign(); abWdDesignSave(); abSetStatus('abWdStatus', t ? 'Watermark applied ✓' : 'Watermark removed ✓'); }
     function abWdSetPageColor(v) { abWdDesign.pageColor = v; abWdApplyDesign(); abWdDesignSave(); }
     function abWdClearPageColor() { abWdDesign.pageColor = ''; abWdApplyDesign(); abWdDesignSave(); abSetStatus('abWdStatus', 'Page colour hat gaya ✓'); }
     function abWdSetPageBorder(v) { abWdDesign.pageBorder = v; abWdApplyDesign(); abWdDesignSave(); abSetStatus('abWdStatus', 'Page border: ' + v + ' ✓'); }
@@ -29926,7 +29926,7 @@ function abBuildPptTemplate(t) {
       var body = ['Top', 'Bottom', 'Left', 'Right'].map(function (s) { return ab2Field(s + ' (mm)', '<input type="number" id="abWdMg' + s + '" value="20" min="5" max="70" style="width:100%;border:1.5px solid #b6bfcc;border-radius:7px;padding:7px 9px">'); }).join('');
       ab2Modal('Custom Margins', body, [{ label: 'Cancel' }, { label: 'Apply', primary: true, fn: function () {
         var t = ab2MVal('abWdMgTop') || 20, b = ab2MVal('abWdMgBottom') || 20, l = ab2MVal('abWdMgLeft') || 20, r = ab2MVal('abWdMgRight') || 20;
-        var p = abWdPage(); p.style.padding = t + 'mm ' + r + 'mm ' + b + 'mm ' + l + 'mm'; var ms = document.getElementById('abWdMargins'); if (ms) ms.value = 'custom'; abWdAfterEdit(); abSetStatus('abWdStatus', 'Custom margins lag gaye ✓');
+        var p = abWdPage(); p.style.padding = t + 'mm ' + r + 'mm ' + b + 'mm ' + l + 'mm'; var ms = document.getElementById('abWdMargins'); if (ms) ms.value = 'custom'; abWdAfterEdit(); abSetStatus('abWdStatus', 'Custom margins applied ✓');
       } }]);
     }
     function abWdApplyParaBox() {
@@ -29961,7 +29961,7 @@ function abBuildPptTemplate(t) {
         var a = (ab2MVal('abWdCitAuthor') || '').trim(), y = (ab2MVal('abWdCitYear') || '').trim(), t = (ab2MVal('abWdCitTitle') || '').trim();
         if (!a || !y) { abSetStatus('abWdStatus', 'Author and Year are required'); return; }
         abWdSources.push({ author: a, year: y, title: t }); abWdDesignSave();
-        abWdInsertHtmlAtCaret(' (' + abEsc(a.split(',')[0]) + ', ' + abEsc(y) + ')'); abSetStatus('abWdStatus', 'Citation lag gaya ✓ — Bibliography References tab se banayen');
+        abWdInsertHtmlAtCaret(' (' + abEsc(a.split(',')[0]) + ', ' + abEsc(y) + ')'); abSetStatus('abWdStatus', 'Citation inserted ✓ — create the Bibliography from the References tab');
       } }]);
     }
     function abWdInsertBibliography() {
@@ -30027,10 +30027,10 @@ function abBuildPptTemplate(t) {
       if (!w) { abSetStatus('abWdStatus', 'Select a word first'); return; }
       var map = (typeof AB2_THESAURUS !== 'undefined') ? AB2_THESAURUS : {}; var syns = map[w];
       if (typeof syns === 'string') syns = syns.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-      if (!syns || !syns.length) { abSetStatus('abWdStatus', '"' + w + '" ke synonyms does not exist'); return; }
+      if (!syns || !syns.length) { abSetStatus('abWdStatus', '"' + w + '" has no synonyms in our short list'); return; }
       var items = [{ head: 'Synonyms of "' + w + '"' }]; syns.forEach(function (s) { items.push({ label: s, fn: function () { document.execCommand('insertText', false, s); abWdAfterEdit(); } }); });
       var r = sel.getRangeAt(0).getBoundingClientRect(); abMenu(r.left, r.bottom + 4, items);
-      abSetStatus('abWdStatus', '"' + w + '" ke ' + syns.length + ' synonyms — click kar ke badlen');
+      abSetStatus('abWdStatus', '"' + w + '" has ' + syns.length + ' synonyms — click to replace');
     }
     function abWdWordCountDialog() {
       var t = abWdPage().textContent.trim(); var words = t ? t.split(/\s+/).length : 0;
@@ -30044,12 +30044,12 @@ function abBuildPptTemplate(t) {
       var sel = window.getSelection(); var t = (sel && !sel.isCollapsed) ? sel.toString() : abWdPage().textContent;
       if (!t.trim()) { abSetStatus('abWdStatus', 'There is no text to read'); return; }
       speechSynthesis.cancel(); var u = new SpeechSynthesisUtterance(t.slice(0, 4000)); u.rate = 1; speechSynthesis.speak(u); abWdAloudOn = true;
-      abSetStatus('abWdStatus', 'Read Aloud chal raha hai 🔊 (Stop Review tab se)');
+      abSetStatus('abWdStatus', 'Read Aloud is playing 🔊 (stop it from the Review tab)');
     }
-    function abWdStopAloud() { if ('speechSynthesis' in window) speechSynthesis.cancel(); abWdAloudOn = false; abSetStatus('abWdStatus', 'Read Aloud band'); }
+    function abWdStopAloud() { if ('speechSynthesis' in window) speechSynthesis.cancel(); abWdAloudOn = false; abSetStatus('abWdStatus', 'Read Aloud stopped'); }
     function abWdTranslateDialog() {
       var sel = window.getSelection(); var t = sel && !sel.isCollapsed ? sel.toString() : '';
-      var body = ab2Field('Text (English ya Urdu)', '<textarea id="abWdTrText" rows="3" style="width:100%;border:1.5px solid #b6bfcc;border-radius:7px;padding:7px 9px">' + abEsc(t) + '</textarea>')
+      var body = ab2Field('Text (English or Urdu)', '<textarea id="abWdTrText" rows="3" style="width:100%;border:1.5px solid #b6bfcc;border-radius:7px;padding:7px 9px">' + abEsc(t) + '</textarea>')
         + ab2Field('Direction', ab2SelInput('abWdTrDir', [['en|ur', 'English → Urdu'], ['ur|en', 'Urdu → English']], 'en|ur'))
         + '<div id="abWdTrOut" style="font-size:13.5px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:8px 10px;margin-top:8px;min-height:34px"></div>';
       ab2Modal('Translate', body, [{ label: 'Close' }, { label: 'Translate', primary: true, keep: true, fn: function () {
@@ -30338,7 +30338,7 @@ function abBuildPptTemplate(t) {
     }
     function abPptNewSlideMenu(ev) { var items = [{ head: 'New Slide — choose a layout' }]; Object.keys(AB_PPT_LAYOUTS).forEach(function (k) { items.push({ label: AB_PPT_LAYOUTS[k].name, fn: function () { abPptAddSlideLayout(k); } }); }); abMenuFor(ev.currentTarget, items); }
     function abPptAddSlideLayout(kind) { abPptPushHistory(); var s = abPptBuildLayoutSlide(kind); abPpt.slides.splice(abPpt.cur + 1, 0, s); abPpt.cur = abPpt.cur + 1; abPpt.sel = null; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('New slide (' + AB_PPT_LAYOUTS[kind].name + ') added ✓'); }
-    function abPptLayoutMenu(ev) { var items = [{ head: 'Is slide ka layout badlen (content mehfooz rahe ga)' }]; Object.keys(AB_PPT_LAYOUTS).forEach(function (k) { items.push({ label: AB_PPT_LAYOUTS[k].name, fn: function () { abPptApplyLayout(k); } }); }); abMenuFor(ev.currentTarget, items); }
+    function abPptLayoutMenu(ev) { var items = [{ head: 'Change the layout of this slide (content stays safe)' }]; Object.keys(AB_PPT_LAYOUTS).forEach(function (k) { items.push({ label: AB_PPT_LAYOUTS[k].name, fn: function () { abPptApplyLayout(k); } }); }); abMenuFor(ev.currentTarget, items); }
     function abPptApplyLayout(kind) {
       var cur = abCurSlide(); var fresh = abPptBuildLayoutSlide(kind);
       var title = abPptTitleEl(cur), body = abPptBodyEl(cur);
@@ -30348,7 +30348,7 @@ function abBuildPptTemplate(t) {
       var keep = cur.elements.filter(function (e) { return e.type === 'image' || e.type === 'table'; });
       fresh.elements = fresh.elements.concat(keep);
       fresh.notes = cur.notes || ''; fresh.hidden = !!cur.hidden; fresh.transition = cur.transition || 'none'; fresh.trDur = cur.trDur || 0.6; fresh.trAfter = cur.trAfter || 0; fresh.comments = cur.comments || []; fresh.ink = cur.ink || [];
-      abPptPushHistory(); abPpt.slides[abPpt.cur] = fresh; abPpt.sel = null; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Layout lag gaya ✓');
+      abPptPushHistory(); abPpt.slides[abPpt.cur] = fresh; abPpt.sel = null; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Layout applied ✓');
     }
     function abPptResetSlide() { var cur = abCurSlide(); var kind = 'content'; abPptPushHistory(); var fresh = abPptBuildLayoutSlide(kind); fresh.bg = cur.bg; abPpt.slides[abPpt.cur] = fresh; abPpt.sel = null; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Slide reset ✓'); }
     function abPptToggleHide() { var s = abCurSlide(); s.hidden = !s.hidden; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Slide ' + (s.hidden ? 'hidden — it will be skipped in Present mode' : 'visible again') + ' ✓'); }
@@ -30441,7 +30441,7 @@ function abBuildPptTemplate(t) {
       abPptPushHistory(); var s = abCurSlide(); var th = AB_PPT_THEMES[document.getElementById('abPptTheme').value] || AB_PPT_THEMES.blue;
       if (kind === 'process') { ['Step 1', 'Step 2', 'Step 3'].forEach(function (t, i) { s.elements.push({ id: abElUid(), type: 'shape', shape: i === 1 ? 'arrow' : 'round', x: 60 + i * 300, y: 210, w: 260, h: 110, fill: th.accent }); var e = abPptMakeText(t, 60 + i * 300, 248, 260, 50, 24, true, '#ffffff', 'center'); s.elements.push(e); function y0() { return 248; } }); }
       else { s.elements.push({ id: abElUid(), type: 'shape', shape: 'round', x: 90, y: 110, w: 780, h: 320, fill: '#eef4ff' }); var e2 = abPptMakeText('• Pehla point<br>• Dusra point<br>• Teesra point', 130, 150, 700, 240, 24, false, th.body, 'left'); s.elements.push(e2); }
-      abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('SmartArt lag gaya ✓');
+      abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('SmartArt inserted ✓');
     }
     function abPptChartDialog() {
       if (typeof Chart === 'undefined') { abPptSetStatus('The chart library did not load'); return; }
@@ -30454,7 +30454,7 @@ function abBuildPptTemplate(t) {
         var vals = (ab2MVal('abPptChVals') || '').split(',').map(function (x) { return parseFloat(x) || 0; });
         var cv = document.createElement('canvas'); cv.width = 720; cv.height = 420; document.body.appendChild(cv);
         var ch = new Chart(cv.getContext('2d'), { type: ab2MVal('abPptChType') || 'bar', data: { labels: labels, datasets: [{ label: ab2MVal('abPptChTitle') || '', data: vals, backgroundColor: ['#b7472a', '#70ad47', '#ffc000', '#2b579a', '#7030a0'] }] }, options: { responsive: false, animation: false, plugins: { title: { display: true, text: ab2MVal('abPptChTitle') || '' } } } });
-        setTimeout(function () { var url = cv.toDataURL('image/png'); ch.destroy(); cv.remove(); abPptPushHistory(); var el = { id: abElUid(), type: 'image', x: 150, y: 80, w: 660, h: 385, src: url }; abCurSlide().elements.push(el); abPpt.sel = el.id; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Chart lag gaya ✓'); }, 350);
+        setTimeout(function () { var url = cv.toDataURL('image/png'); ch.destroy(); cv.remove(); abPptPushHistory(); var el = { id: abElUid(), type: 'image', x: 150, y: 80, w: 660, h: 385, src: url }; abCurSlide().elements.push(el); abPpt.sel = el.id; abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Chart inserted ✓'); }, 350);
       } }]);
     }
     function abPptLinkDialog() {
@@ -30468,7 +30468,7 @@ function abBuildPptTemplate(t) {
         abPptPushHistory();
         if (t === 'url') { var u = (ab2MVal('abPptLkUrl') || '').trim(); if (!u) { abPptSetStatus('Enter the URL'); return; } el.link = { type: 'url', target: u }; }
         else el.link = { type: 'slide', target: parseInt(t.split(':')[1], 10) };
-        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Link lag gaya ✓ — Present mode me is item par click karne se link khule ga');
+        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Link applied ✓ — in Present mode, clicking this item opens the link');
       } }]);
     }
     function abPptCommentDialog() {
@@ -30488,7 +30488,7 @@ function abBuildPptTemplate(t) {
         + '<label style="display:flex;gap:8px;align-items:center;font-size:13.5px;margin-top:8px"><input type="checkbox" id="abPptHfDate" ' + (hf.date ? 'checked' : '') + '> Date and time (aaj ki date)</label>'
         + '<label style="display:flex;gap:8px;align-items:center;font-size:13.5px;margin-top:6px"><input type="checkbox" id="abPptHfNum" ' + (hf.num ? 'checked' : '') + '> Slide number</label>'
         + '<div style="font-size:12px;color:#475569;margin-top:8px">This appears at the bottom of every slide — in the editor, Present mode and print. (A separate footer for notes/handouts is not available in this version.)</div>';
-      ab2Modal('Header & Footer', body, [{ label: 'Cancel' }, { label: 'Apply to All Slides', primary: true, fn: function () { abPptExtra.hf = { footer: ab2MVal('abPptHfText') || '', date: !!document.getElementById('abPptHfDate').checked, num: !!document.getElementById('abPptHfNum').checked }; abPptExtraSave(); abRenderPptAll(); abPptSetStatus('Header & Footer lag gaya ✓'); } }]);
+      ab2Modal('Header & Footer', body, [{ label: 'Cancel' }, { label: 'Apply to All Slides', primary: true, fn: function () { abPptExtra.hf = { footer: ab2MVal('abPptHfText') || '', date: !!document.getElementById('abPptHfDate').checked, num: !!document.getElementById('abPptHfNum').checked }; abPptExtraSave(); abRenderPptAll(); abPptSetStatus('Header & Footer applied ✓'); } }]);
     }
     function abPptWordArtMenu(ev) { var styles = [ { n: 'Orange Bold', st: 'font-weight:800;color:#c43e1c' }, { n: 'Blue Shadow', st: 'font-weight:800;color:#1d4ed8;text-shadow:3px 3px 0 #bfdbfe' }, { n: 'Gradient', st: 'font-weight:800;background:linear-gradient(90deg,#c43e1c,#7e22ce);-webkit-background-clip:text;color:transparent' }, { n: 'Outline', st: 'font-weight:800;color:#fff;-webkit-text-stroke:1.5px #111827' } ]; var items = [{ head: 'WordArt' }]; styles.forEach(function (s) { items.push({ label: s.n, fn: function () { abPptPushHistory(); var e = abPptMakeText('<span style="' + s.st + '">WordArt</span>', 280, 200, 400, 80, 44, true, '#1f2937', 'center'); abCurSlide().elements.push(e); abPpt.sel = e.id; abRenderPptAll(); abPptScheduleSave(); } }); }); abMenuFor(ev.currentTarget, items); }
     function abPptDateTime() { var now = new Date(); var str = now.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }) + ' · ' + now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' }); abPptPushHistory(); var e = abPptMakeText(str, 60, 470, 700, 30, 16, false, '#475569', 'left'); abCurSlide().elements.push(e); abPpt.sel = e.id; abRenderPptAll(); abPptScheduleSave(); }
@@ -30511,12 +30511,12 @@ function abBuildPptTemplate(t) {
     function abPptThemeChange() { abPptApplyTheme(document.getElementById('abPptTheme').value, false); }
     function abPptApplyThemeAll() { abPptApplyTheme(document.getElementById('abPptTheme').value, true); }
     var AB_PPT_VARIANTS = { blue: { title: '#1d4ed8', accent: '#2b579a' }, green: { title: '#15803d', accent: '#70ad47' }, purple: { title: '#7e22ce', accent: '#7030a0' }, warm: { title: '#c2410c', accent: '#ed7d31' } };
-    function abPptVariantColor(name) { if (!name) return; var v = AB_PPT_VARIANTS[name]; if (!v) return; abPptPushHistory(); var s = abCurSlide(); var t = abPptTitleEl(s); if (t) t.color = v.title; s.elements.forEach(function (e) { if (e.type === 'shape') e.fill = v.accent; }); abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Variant colors lag gaye ✓ (is slide par)'); }
+    function abPptVariantColor(name) { if (!name) return; var v = AB_PPT_VARIANTS[name]; if (!v) return; abPptPushHistory(); var s = abCurSlide(); var t = abPptTitleEl(s); if (t) t.color = v.title; s.elements.forEach(function (e) { if (e.type === 'shape') e.fill = v.accent; }); abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Variant colours applied ✓ (on this slide)'); }
     function abPptVariantFont(name) { if (!name) return; abPptPushHistory(); abCurSlide().elements.forEach(function (e) { if (e.type === 'text') e.font = name; }); abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Font "' + name + '" applied to all text on this slide ✓'); }
     function abPptBgChange() { var s = abCurSlide(); abPptPushHistory(); s.bg = document.getElementById('abPptBg').value; abRenderPptAll(); abPptScheduleSave(); }
     function abPptBgDialog() {
       var body = ab2Field('Colour', '<input type="color" id="abPptBgdColor" value="#ffffff" style="width:70px;height:36px;border:1.5px solid #b6bfcc;border-radius:7px">')
-        + ab2Field('Gradient (colour 2 — khali = sirf colour)', '<input type="color" id="abPptBgdColor2" value="#dbeafe" style="width:70px;height:36px;border:1.5px solid #b6bfcc;border-radius:7px">')
+        + ab2Field('Gradient (colour 2 — leave empty for a single colour)', '<input type="color" id="abPptBgdColor2" value="#dbeafe" style="width:70px;height:36px;border:1.5px solid #b6bfcc;border-radius:7px">')
         + ab2Field('Image URL (optional)', '<input type="text" id="abPptBgdImg" placeholder="https://…" style="width:100%;border:1.5px solid #b6bfcc;border-radius:7px;padding:7px 9px">')
         + ab2Field('Apply', ab2SelInput('abPptBgdScope', [['cur', 'Current slide'], ['all', 'All slides']], 'cur'));
       ab2Modal('Format Background', body, [{ label: 'Cancel' }, { label: 'Apply', primary: true, fn: function () {
@@ -30526,7 +30526,7 @@ function abBuildPptTemplate(t) {
         abPptPushHistory();
         var slides = (ab2MVal('abPptBgdScope') === 'all') ? abPpt.slides : [abCurSlide()];
         slides.forEach(function (s) { s.bg = bg; });
-        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Background lag gaya ✓');
+        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Background applied ✓');
       } }]);
     }
     function abPptBgStylesMenu(ev) { var presets = [ { n: 'White', bg: '#ffffff' }, { n: 'Light Blue', bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)' }, { n: 'Light Green', bg: 'linear-gradient(135deg,#f0fdf4,#dcfce7)' }, { n: 'Warm Sand', bg: 'linear-gradient(135deg,#fffbeb,#fef3c7)' }, { n: 'Dark Slate', bg: '#1e293b' }, { n: 'Sunset', bg: 'linear-gradient(135deg,#fff7ed,#ffedd5)' } ]; var items = [{ head: 'Background Styles (is slide par)' }]; presets.forEach(function (p) { items.push({ label: p.n, fn: function () { abPptPushHistory(); abCurSlide().bg = p.bg; abRenderPptAll(); abPptScheduleSave(); } }); }); abMenuFor(ev.currentTarget, items); }
@@ -30666,7 +30666,7 @@ function abBuildPptTemplate(t) {
     function abPptSetupDialog() {
       var st = abPptExtra.setup;
       var body = '<label style="display:flex;gap:8px;align-items:center;font-size:13.5px"><input type="checkbox" id="abSetupLoop" ' + (st.loop ? 'checked' : '') + '> Loop continuously (restart at the end)</label>'
-        + '<label style="display:flex;gap:8px;align-items:center;font-size:13.5px;margin-top:8px"><input type="checkbox" id="abSetupTimings" ' + (st.useTimings ? 'checked' : '') + '> Use Timings (jin slides par “Advance After”/rehearse time hai, wo khud aage badhen)</label>'
+        + '<label style="display:flex;gap:8px;align-items:center;font-size:13.5px;margin-top:8px"><input type="checkbox" id="abSetupTimings" ' + (st.useTimings ? 'checked' : '') + '> Use Timings (slides with an “Advance After”/rehearse time advance on their own)</label>'
         + '<div style="font-size:12px;color:#475569;margin-top:8px">Advance mode: On mouse click (always) + timings (if on). For a full auto mode like Browsed at Kiosk, turn on Use Timings and set the After time for each slide.</div>';
       ab2Modal('Set Up Show', body, [{ label: 'Cancel' }, { label: 'Save', primary: true, fn: function () { abPptExtra.setup = { loop: !!document.getElementById('abSetupLoop').checked, useTimings: !!document.getElementById('abSetupTimings').checked }; abPptExtraSave(); abPptSetStatus('Show settings saved ✓'); } }]);
     }
@@ -30683,7 +30683,7 @@ function abBuildPptTemplate(t) {
       var tmp = document.createElement('div'); tmp.innerHTML = el.html; var w = (tmp.textContent.trim().split(/\s+/)[0] || '').toLowerCase();
       var syns = ((typeof AB2_THESAURUS !== 'undefined') ? AB2_THESAURUS : {})[w];
       if (typeof syns === 'string') syns = syns.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
-      if (!syns || !syns.length) { abPptSetStatus('"' + w + '" ke synonyms does not exist'); return; }
+      if (!syns || !syns.length) { abPptSetStatus('"' + w + '" has no synonyms in our short list'); return; }
       var body = '<div style="font-size:13.5px">"' + abEsc(w) + '" — synonyms (click to replace the first word):</div><div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:6px">' + syns.map(function (s) { return '<button type="button" class="ab-ai-chip" data-psyn="' + abEsc(s) + '">' + abEsc(s) + '</button>'; }).join('') + '</div>';
       ab2Modal('Thesaurus', body, [{ label: 'Close', primary: true }]);
       document.querySelectorAll('[data-psyn]').forEach(function (b) { b.addEventListener('click', function () { abPptPushHistory(); el.html = abPptReplaceInHtml(el.html, w, b.getAttribute('data-psyn')); ab2CloseModal(); abRenderPptAll(); abPptScheduleSave(); }); });
@@ -30746,7 +30746,7 @@ function abBuildPptTemplate(t) {
         abPptExtra.master = { titleSize: ts, bodySize: bs, bg: bgOn ? document.getElementById('abMstBg').value : '' }; abPptExtraSave();
         abPptPushHistory();
         abPpt.slides.forEach(function (s) { var t = abPptTitleEl(s); s.elements.forEach(function (e) { if (e.type !== 'text') return; e.fontSize = (e === t) ? ts : bs; }); if (bgOn) s.bg = abPptExtra.master.bg; });
-        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Slide Master lag gaya ✓ (titles ' + ts + 'pt, body ' + bs + 'pt)');
+        abRenderPptAll(); abPptScheduleSave(); abPptSetStatus('Slide Master applied ✓ (titles ' + ts + 'pt, body ' + bs + 'pt)');
       } }]);
     }
     /* ---------- Print (addendum 1) ---------- */
@@ -32463,7 +32463,7 @@ function abBuildPptTemplate(t) {
         document.getElementById('restorePhotoBtn').classList.remove('hidden');
         document.getElementById('autoFrameBtn').classList.remove('hidden');
         setBgStatus('Background removed, white background applied and the photo has been auto-framed! If you like, change it to Blue / Black from below, or adjust the frame with the sliders.', false);
-        showCustomAlert('AI ne background remove kar diya hai!', true);
+        showCustomAlert('AI has removed the background!', true);
       } catch (err) {
         console.error('BG removal error:', err);
         setBgStatus('The background could not be removed. Please check your internet connection and try again. Detail: ' + (err && err.message ? err.message : err), true);
@@ -32781,7 +32781,7 @@ function abBuildPptTemplate(t) {
       try {
         let llmText = userText;
         if (photo) {
-          addZometaBubble(userText ? ('📷 Photo bheji gayi\n' + userText) : '📷 Photo bheji gayi', 'user');
+          addZometaBubble(userText ? ('📷 Photo sent\n' + userText) : '📷 Photo sent', 'user');
           inp.value = '';
           zometaRemovePhoto();
           addZometaTyping();
